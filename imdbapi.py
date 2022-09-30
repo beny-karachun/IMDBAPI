@@ -65,21 +65,3 @@ with st.container():
         st.text("Movie Rating: "+ str(getRating(id)))
         st.text("Movie duration: " + str(getDuration(id)) + " minutes")
     
-    
-    
-# def getReleaseDate(ID):
-#  url = "https://imdb8.p.rapidapi.com/title/get-top-crew"
-
-
-#  querystring = {"tconst":ID}
-
-#  headers = {
-# 	"X-RapidAPI-Key": "8a67def28cmsh0bf8c467709ccdfp1df2ddjsncc7b6e252b1d",
-# 	"X-RapidAPI-Host": "imdb8.p.rapidapi.com"
-#  }
-
-#  response = requests.request("GET", url, headers=headers, params=querystring)
-#  data = json.loads(response.text)
-#  print(data)
-
-# getReleaseDate("tt4565380")
