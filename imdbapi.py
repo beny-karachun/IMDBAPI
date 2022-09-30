@@ -61,7 +61,12 @@ with st.container():
     
     submit = st.button("Grab the details")
     if submit and name:
-        id = str(getMovieID(name))
-        st.text("Movie Rating: "+ str(getRating(id)))
-        st.text("Movie duration: " + str(getDuration(id)) + " minutes")
+        try:
+         id = str(getMovieID(name))
+         st.text("Movie Rating: "+ str(getRating(id)))
+         st.text("Movie duration: " + str(getDuration(id)) + " minutes")
+        except:
+            st.error("Something went wrong")
+    
+    
     
