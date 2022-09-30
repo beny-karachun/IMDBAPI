@@ -67,6 +67,8 @@ with st.container():
          st.text("Movie duration: " + str(getDuration(id)) + " minutes")
         except:
             st.error("Something went wrong")
+    if submit and not(name):
+        st.error("Please fill out the name field!")
     
     
     
