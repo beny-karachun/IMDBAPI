@@ -36,20 +36,22 @@ def getData(id):
 
     response = requests.request("GET", url, headers=headers, params=querystring)
     data = json.loads(response.text)
+    
     return data
 
 def getDuration(data):
     return (data["title"])["runningTimeInMinutes"]
 
+
 def getRelease(data):
     return (data["releaseDate"])
 
 def getRating(data):
-    return data["ratings"]
+    return data["ratings"]["rating"]
 
 def getGenres(data):
     return data["genres"]
-   
+
 
 
 with st.container():
@@ -59,25 +61,13 @@ with st.container():
     submit = st.button("Grab the details")
     if submit and name:
         try:
-         id = str(getMovieID(name))
-         st.text("Movie Rating: "+ str(getRating(id)))
-         st.text("Movie duration: " + str(getDuration(id)) + " minutes")
+         data = getData(str(getMovieID(name)))
+         
+         st.text("Movie Rating: "+ str(getRating(data)))
+         st.text("Movie duration: " + str(getDuration(data)) + " minutes")
+         st.text("Genres: " + ",".join(getGenres(data)))
+         st.text("Release Year: " + str(getRelease(data)[:4]))
         except:
             st.error("Your input isn't a valid movie name, please fix your input.")
     if submit and not(name):
         st.error("Please fill out the name field!")
-
-
-
-
-    
-    
-
-
-
-# data = getData(getMovieID("Hobbit"))
-# print("Rating: " + str(getRating(data)["rating"]))
-# print("Duration: " + str(getDuration(data)))
-# print("Release date: " + str(getRelease(data))[:4])
-# print("Genres: " + GoogleTranslator(source='auto', target='de').translate(",".join(getGenres(data))))
-        # return(a.replace("/","").replace("title",""))
